@@ -155,7 +155,6 @@
 #include "scene/resources/visual_shader_particle_nodes.h"
 #include "scene/resources/visual_shader_sdf_nodes.h"
 #include "scene/resources/world_2d.h"
-#include "scene/scene_string_names.h"
 #include "scene/theme/theme_db.h"
 
 // 2D
@@ -545,7 +544,7 @@ void register_scene_types() {
 	GDREGISTER_CLASS(Camera3D);
 	GDREGISTER_CLASS(AudioListener3D);
 	GDREGISTER_CLASS(XRCamera3D);
-	GDREGISTER_ABSTRACT_CLASS(XRNode3D);
+	GDREGISTER_CLASS(XRNode3D);
 	GDREGISTER_CLASS(XRController3D);
 	GDREGISTER_CLASS(XRAnchor3D);
 	GDREGISTER_CLASS(XROrigin3D);
@@ -589,7 +588,7 @@ void register_scene_types() {
 	GDREGISTER_CLASS(CPUParticles3D);
 	GDREGISTER_CLASS(Marker3D);
 	GDREGISTER_CLASS(RootMotionView);
-	GDREGISTER_ABSTRACT_CLASS(SkeletonModifier3D);
+	GDREGISTER_VIRTUAL_CLASS(SkeletonModifier3D);
 
 	OS::get_singleton()->yield(); // may take time to init
 
@@ -657,6 +656,9 @@ void register_scene_types() {
 	GDREGISTER_ABSTRACT_CLASS(VisualShaderNodeConstant);
 	GDREGISTER_ABSTRACT_CLASS(VisualShaderNodeVectorBase);
 	GDREGISTER_CLASS(VisualShaderNodeFrame);
+#ifndef DISABLE_DEPRECATED
+	GDREGISTER_CLASS(VisualShaderNodeComment); // Deprecated, just for compatibility.
+#endif
 	GDREGISTER_CLASS(VisualShaderNodeFloatConstant);
 	GDREGISTER_CLASS(VisualShaderNodeIntConstant);
 	GDREGISTER_CLASS(VisualShaderNodeUIntConstant);
@@ -741,6 +743,7 @@ void register_scene_types() {
 	GDREGISTER_ABSTRACT_CLASS(VisualShaderNodeVarying);
 	GDREGISTER_CLASS(VisualShaderNodeVaryingSetter);
 	GDREGISTER_CLASS(VisualShaderNodeVaryingGetter);
+	GDREGISTER_CLASS(VisualShaderNodeReroute);
 
 	GDREGISTER_CLASS(VisualShaderNodeSDFToScreenUV);
 	GDREGISTER_CLASS(VisualShaderNodeScreenUVToSDF);
